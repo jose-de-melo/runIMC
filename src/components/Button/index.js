@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5,
-        marginTop: 40
+        marginTop: 40,
     },
 
     textButton:{
-        color: 'black',
+        color: '#FFF',
         fontWeight: 'bold',
         fontSize: 17
     }

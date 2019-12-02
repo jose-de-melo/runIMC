@@ -1,30 +1,126 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+
+import React, { useState } from 'react';
+import {
+  StyleSheet,
+  View,
+  Text,
+  StatusBar,
+  TextInput,
+} from 'react-native';
 
 import Button from './src/components/Button'
 
-export default function App() {
+const App = () => {
+  const [altura, setAltura] = useState('');
+  const [message, setMessage] = useState('')
+  const [warning, setWarning] = useState(0)
+  const [peso, setPeso] = useState('')
 
-  function calcularIMC(){
-    alert("TESTANDO")
+  const verificarIMC = (imc) => {
+    if (imc < 18.5){
+      setMessage("IMC: %imc\nClassificação: Magreza\nGrau de obesidade: 0")
+      return 
+    }
   }
 
 
+  const calculateIMC = () => { 
+    imc = peso / (altura * altura)
+    verificarIMC(imc)
+    //setMessage(imc)
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <>
+      <StatusBar translucent backgroundColor={styles.container.backgroundColor}/>
+      <View style={styles.container}>
+        
+        <Text style={styles.title}>RunIMC</Text>
 
-      <Button text='Calcular' function={calcularIMC} />
+        <TextInput
+          type="text"
+          placeholder="Altura"
+          keyboardType="numeric"
+          style={styles.inputs}
+          value={altura}
+          onChangeText={setAltura}
+          
+        />
 
-    </View>
+        <TextInput
+          type="text"
+          placeholder="Peso"
+          style={styles.inputs}
+          keyboardType="numeric"
+          value={peso}
+          onChangeText={setPeso}
+        />
+
+
+        <Button text='Calcular' function={calculateIMC}/>
+
+        <Text 
+          style={(warning == 0) ? styles.imcNormal : ((warning == 1) ? styles.imcSaudavel : styles.imcRuim)}
+        >
+          IMC: {"\n"}
+          Classificação: {"\n"}
+          Grau de obesidade: {"\n"}
+        </Text>
+
+
+      </View>
+    </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#303F9F'
   },
+
+  imcNormal:{
+    backgroundColor: 'green'
+  },
+
+  inputs: {
+    backgroundColor: '#fafafa',
+    marginTop: 25,
+    width: '100%',
+    height: 60,
+    textAlign: 'center',
+    fontSize: 20
+  },
+
+  title: {
+    fontSize: 40,
+    color: '#FFF',
+    marginBottom: 30,
+    fontWeight: 'bold'
+  },
+
+  imcNormal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#FFF',
+    marginTop: 35,
+    backgroundColor: '#FFF',
+    width: "100%",
+    color:"black"
+  },
+
+  imcSaudavel: {
+    
+  },
+
+  imcRuim: {
+    
+  }
+
+
+
 });
+
+export default App;
