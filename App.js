@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  StatusBar,
-  TextInput,
-  Keyboard
-} from 'react-native';
+import { StyleSheet, View, Text, StatusBar, TextInput, Keyboard, LinearGradient } from 'react-native';
 
 /**
  * Importando o componente Button
@@ -111,6 +104,8 @@ const App = () => {
 
   return (
     <>
+      
+        
       <StatusBar translucent backgroundColor={styles.container.backgroundColor}/>
       <View style={styles.container}>
         
@@ -123,7 +118,6 @@ const App = () => {
           style={styles.inputs}
           value={altura}
           onChangeText={setAltura}
-          
         />
 
         <TextInput
@@ -145,8 +139,6 @@ const App = () => {
           Classificação: {classe}{"\n"}
           Grau de obesidade: {grau}
         </Text>
-
-
       </View>
     </>
   );
@@ -157,11 +149,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#303F9F'
-  },
-
-  imcNormal:{
-    backgroundColor: 'green'
+    backgroundColor: '#212121'
   },
 
   inputs: {
