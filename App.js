@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, StatusBar, TextInput, Keyboard, LinearGradient } from 'react-native';
+import { StyleSheet, View, Text, StatusBar, TextInput, Keyboard } from 'react-native';
 
 /**
  * Importando o componente Button
