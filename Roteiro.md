@@ -590,8 +590,9 @@ return (
 ```
 
 Por fim, essa será a aparência da aplicação caso todos os passos anteriores tenham sido realizados:
-
-<img src="img/runIMC.jpeg" alt="HomeScreen RunIMC" style="margin-left: 20%;margin-top:10px;margin-bottom:10px;">
+<p align="center">
+<img src="img/runIMC.jpeg" alt="HomeScreen RunIMC" style="margin-top:10px;margin-bottom:10px;">
+</p>
 
 
 
