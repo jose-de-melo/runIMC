@@ -591,7 +591,7 @@ return (
 
 Por fim, essa será a aparência da aplicação caso todos os passos anteriores tenham sido realizados:
 <p align="center">
-<img src="img/runIMC.jpeg" alt="HomeScreen RunIMC" style="margin-top:10px;margin-bottom:10px;">
+<img src="img/runIMC.jpeg" alt="HomeScreen RunIMC" width="200" style="margin-top:10px;margin-bottom:10px;">
 </p>
 
 
