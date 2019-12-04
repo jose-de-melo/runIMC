@@ -119,10 +119,16 @@ O arquivo deve ter o seguinte conteúdo depois dessa alteração:
 import React from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 
+import Button from '.src/components/Button'
+
 const App = () => {
+
+    function calcularIMC(){
+        alert("Calculando IMC...")
+    }
+
     return (
          <View style={styles.container}>
-        
             <Text>RunIMC</Text>
 
             <TextInput
@@ -137,8 +143,8 @@ const App = () => {
                 keyboardType="numeric"
             />
             <Button text='Calcular' function={calculateIMC} />
-      </View>
-
+            
+        </View>
     )
 }
 
@@ -202,6 +208,8 @@ Com os states criados, vamos referênciá-los nos inputs para que o valor inseri
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 
+import Button from '.src/components/Button'
+
 const App = () => {
     /**
     * Dados a serem lidos do usuário
@@ -216,6 +224,10 @@ const App = () => {
     const [classe, setClasse] = useState('')
     const [grau, setGrau] = useState(0)
     const [warning, setWarning] = useState(0)
+
+    function calcularIMC(){
+        alert("Calculando IMC...")
+    }
 
     return (
          <View style={styles.container}>
@@ -237,7 +249,7 @@ const App = () => {
                 value={peso}
                 onChangeText={setPeso}
             />
-            <Button text='Calcular' function={calculateIMC} />
+            <Button text='Calcular' function={calculateIMC}/>
       </View>
 
     )
@@ -253,6 +265,339 @@ const styles = StyleSheet.create({
 
 export default App
 ```
+
+### Exibindo as informações calculadas
+
+Para exibir as informações calculadas, vamos utilizar o componente ***Text*** do React Native:
+
+```javascript
+<Text style={(warning == 0) ? styles.imcNormal : ((warning == 1) ? styles.imcSaudavel : styles.imcRuim)}>
+          IMC: {imc.toFixed(2)}{"\n"}
+          Classificação: {classe}{"\n"}
+          Grau de obesidade: {grau}
+</Text>
+```
+
+Como pode ser visto, a estilização desse componente vai variar de acordo com a constante ***warning***, que inicialmente terá o valor 0, que logo atribui o estilo **imcNormal** ao componente.
+
+Para ter acesso ao valores do states, é necessário utilizar {nome_do_state}. A função **toFixed(2)** faz com que sejam utilizadas apenas duas casas decimais do imc calculado, enquanto o **{"\n"}** representa uma quebra de linha em um componente **<Text>**.
+
+Adicione os estilos a seguir para os componentes e referencie cada um no seu respectivo componente:
+
+
+
+Com essa alteração, o conteúdo do arquivo **App.js** deverá ter o seguinte conteúdo:
+
+```javascript
+inputs: {
+    backgroundColor: '#fafafa',
+    marginTop: 25,
+    width: '100%',
+    height: 60,
+    textAlign: 'center',
+    fontSize: 20
+  },
+
+  title: {
+    fontSize: 40,
+    color: '#FFF',
+    marginBottom: 30,
+    fontWeight: 'bold'
+  },
+
+  imcNormal: {
+    marginTop: 35,
+    backgroundColor: '#FFF',
+    width: "100%",
+    color:"black",
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    fontSize: 15,
+    fontWeight: 'bold'
+  },
+
+  imcSaudavel: {
+    marginTop: 35,
+    backgroundColor: '#1A936F',
+    width: "100%",
+    color:"#FFF",
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    fontSize: 15,
+    fontWeight: 'bold'
+  },
+
+  imcRuim: {
+    marginTop: 35,
+    backgroundColor: '#E71D36',
+    width: "100%",
+    color:"#FFF",
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    fontSize: 15,
+    fontWeight: 'bold'
+  }
+```
+
+```javascript
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, TextInput } from 'react-native';
+
+import Button from '.src/components/Button'
+
+const App = () => {
+    /**
+    * Dados a serem lidos do usuário
+    */
+    const [altura, setAltura] = useState('');
+    const [peso, setPeso] = useState('')
+
+    /**
+    * Dados a serem exibidos
+    */
+    const [imc, setImc ] = useState(0)
+    const [classe, setClasse] = useState('')
+    const [grau, setGrau] = useState(0)
+    const [warning, setWarning] = useState(0)
+
+    function calcularIMC(){
+        alert("Calculando IMC...")
+    }
+
+    return (
+         <View style={styles.container}>
+        
+            <Text style={styles.title}>RunIMC</Text>
+
+            <TextInput
+                style={styles.inputs}
+                type="text"
+                placeholder="Altura"
+                keyboardType="numeric"
+                value={altura}
+                onChangeText={setAltura}
+            />
+
+            <TextInput
+                style={styles.inputs}
+                type="text"
+                placeholder="Peso"
+                keyboardType="numeric"
+                value={peso}
+                onChangeText={setPeso}
+            />
+            <Button text='Calcular' function={calculateIMC}/>
+
+            <Text style={(warning == 0) ? styles.imcNormal : ((warning == 1) ? styles.imcSaudavel : styles.imcRuim)}>
+                IMC: {imc.toFixed(2)}{"\n"}
+                Classificação: {classe}{"\n"}
+                Grau de obesidade: {grau}
+            </Text>
+      </View>
+
+    )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  inputs: {
+    backgroundColor: '#fafafa',
+    marginTop: 25,
+    width: '100%',
+    height: 60,
+    textAlign: 'center',
+    fontSize: 20
+  },
+
+  title: {
+    fontSize: 40,
+    color: '#FFF',
+    marginBottom: 30,
+    fontWeight: 'bold'
+  },
+
+  imcNormal: {
+    marginTop: 35,
+    backgroundColor: '#FFF',
+    width: "100%",
+    color:"black",
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    fontSize: 15,
+    fontWeight: 'bold'
+  },
+
+  imcSaudavel: {
+    marginTop: 35,
+    backgroundColor: '#1A936F',
+    width: "100%",
+    color:"#FFF",
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    fontSize: 15,
+    fontWeight: 'bold'
+  },
+
+  imcRuim: {
+    marginTop: 35,
+    backgroundColor: '#E71D36',
+    width: "100%",
+    color:"#FFF",
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+    fontSize: 15,
+    fontWeight: 'bold'
+  }
+});
+
+export default App
+```
+
+### Calculando e verificando o IMC
+
+Altere o código da função ***calcularIMC()*** para:
+
+```javascript
+    function calcularIMC(){
+
+    /**
+     * Caso o usuário deixe um dos campos em branco, não será calculado o IMC e além disso, o Text que exibe as informações terá 
+     * sua estilização alterada para seu estilo inicial 
+     */
+    if (peso == '' || altura == '') {
+      verificarIMC(0)
+      return
+    }
+
+    /**
+     * Calculando o imc
+     */
+    imcValue=parseFloat(peso)/(parseFloat(altura) * parseFloat(altura))
+
+    /**
+     * Atribuindo o valor calculado a constante imc
+     */
+    setImc(imcValue)
+
+    /**
+     * Executando a verificação do IMC calculado
+     */
+    verificarIMC(imcValue)
+    }
+```
+
+Além disso, crie a função ***verificarIMC()*** com as seguintes instruções:
+
+```javascript
+    const verificarIMC = (value) => {
+        if(value == 0) {
+            setWarning(0)
+            setClasse('')
+            setImc(0)
+            setGrau(0)
+            return
+        }
+
+        if (value < 18.5){
+            setWarning(2)
+            setClasse("Magreza")
+            setGrau(0)
+            return 
+        }
+
+        if (value < 24.9){
+            setWarning(1)
+            setClasse("Normal")
+            setGrau(0)
+            return 
+        }
+
+        if (value < 29.9){
+            setWarning(2)
+            setClasse("Sobrepeso")
+            setGrau(1)
+            return 
+        }
+
+        if (value < 39.9){
+            setWarning(2)
+            setClasse("Obesidade")
+            setGrau(2)
+            return 
+        }
+
+        if (value > 40){
+            setWarning(2)
+            setClasse("Obesidade Grave")
+            setGrau(3)
+            return 
+        }
+  }
+```
+
+Com isso, o objetivo da aplicação foi alcançado, com o cálculo do IMC e as informações obtidas através dele.
+
+### Ajustes finos
+
+#### Ocultando o Keyboard quando o botão for clicado
+
+Importe o componente **Keyboard** do React Native:
+
+```javascript
+    import { StyleSheet, View, Text, TextInput, Keyboard } from 'react-native';
+```
+
+Depois, insira a linha a seguir no início do código da função ***calcularIMC()***:
+
+```javascript
+    Keyboard.dismiss()
+```
+
+#### StatusBar transparente e da cor do aplicativo
+
+Importe o componente **StatusBar** do React Native:
+
+```javascript
+    import { StyleSheet, View, Text, TextInput, Keyboard, StatusBar } from 'react-native';
+```
+
+Depois, crie uma instância do componente antes da View principal da aplicação. Porém, a função return de um componente pode retornar apenas um componente, por isso vamos envolver o componente **StatusBar** criado e a View principal da aplicação em um ***fragment*** ( <> </>) da seguinte forma:
+
+```javascript
+return (
+    <>
+        /**
+         * Criando uma StatusBar transparente e com a mesma cor de fundo definida para a View principal (container)
+         */
+        <StatusBar translucent backgroundColor={styles.container.backgroundColor}>
+
+        <View style={styles.container}>
+            ...
+        </View>
+    </>
+)
+```
+
+Por fim, essa será a aparência da aplicação caso todos os passos anteriores tenham sido realizados:
+
+<img src="img/runIMC.jpeg" alt="HomeScreen RunIMC" style="margin-left: 20%;margin-top:10px;margin-bottom:10px;">
+
+
+
+
+
+
 
 
 
