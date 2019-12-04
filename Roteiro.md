@@ -117,7 +117,7 @@ O arquivo deve ter o seguinte conteúdo depois dessa alteração:
 
 ```javascript
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TextInput } from 'react-native';
 
 const App = () => {
     return (
@@ -200,7 +200,7 @@ Com os states criados, vamos referênciá-los nos inputs para que o valor inseri
 
 ```javascript
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TextInput } from 'react-native';
 
 const App = () => {
     /**
