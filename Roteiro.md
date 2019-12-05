@@ -2,21 +2,26 @@
 
 Passo a passo de como criar a aplicação apresentada no minicurso introdutório ao React Native
 
-### Criando a aplicação co Expo
+### Criando a aplicação com o Expo
 
 ```shell
 $ expo init 
 ```
 
 ### Executando a aplicação inicial
+
+Primeiro, faça o download do aplicativo do **Expo** na loja de aplicativos no seu dispositivo. Em seguida, execute **yarn start** no seu terminal:
+
 ```shell
 $ cd runIMC
 $ yarn start
 ```
+Depois é só escanear o QRCode gerado no comando acima.
 
-### Editando a tela da aplicação
 
-Edite o conteúdo da tela inicial da aplicação, mantendo a seguinte estrutura apenas.
+### Editando a tela principal da aplicação
+
+Edite o conteúdo da tela principal da aplicação, mantendo a seguinte estrutura apenas:
 
 ```javascript
 import React from 'react';
@@ -43,7 +48,7 @@ export default App
 ```
 ### Criando um componente
 
-Em seguida, vamos criar um componente Button. Para isso, crie o arquivo **src/componentes/Button/index.js** com o seguinte conteúdo.
+Em seguida, vamos criar um componente para representar um botão. Para isso, crie o arquivo **src/componentes/Button/index.js** com o seguinte conteúdo:
 
 ```javascript
 import React from 'react';
@@ -81,11 +86,11 @@ const styles = StyleSheet.create({
 export default Button;
 ```
 
-O que fizemos foi criar um botão utilizando o componente **TouchableOpacity** do React Native, onde o botão irá possuir as propriedades **function** e **text** que são obtidas através do ***props***, que são os atributos que o componente tem ou terá.
+Assim, foi criado um botão utilizando o componente **TouchableOpacity** do React Native, onde o mesmo irá possuir as propriedades **function** e **text** que são obtidas através do ***props***, que são como atributos do componente.
 
 ### Importando o Button
 
-Para importar o componente para a tela da aplicação, adicione a seguinte linha no arquivo **App.js**:
+Para importar o componente para a tela principal da aplicação, adicione a seguinte linha no arquivo **App.js**:
 
 ```javascript
 import Button from '.src/components/Button'
