@@ -1,6 +1,6 @@
 # RunIMC
 
-Aplicativo simples desenvolvido em [React Native](https://facebook.github.io/react-native/) e utilizando a plataforma [Expo](https://expo.io/) para cálculo de IMC 
+Aplicativo simples para cálculo de IMC  desenvolvido em [React Native](https://facebook.github.io/react-native/) e utilizando a plataforma [Expo](https://expo.io/)
 
 <p align="center">
 <img src="img/runIMC.jpeg" alt="HomeScreen RunIMC" width="300" style="margin-top:10px;margin-bottom:10px;">
